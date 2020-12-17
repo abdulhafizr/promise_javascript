@@ -16,15 +16,14 @@ export default class App extends Component {
     );
   }
 
-  changeName = () => {
-    Promise.all([this.firstName(), this.lastName()]).then(
-      ([firstName, lastName]) => {
-        const name = `${firstName} ${lastName}`;
-        this.setState({
-          name: name
-        });
-      }
-    );
+  changeName = async () => {
+    const fName = await this.firstName();
+    const lName = await this.lastName();
+    const name = `${fName} ${lName}`;
+
+    this.setState({
+      name: name
+    });
   };
 
   firstName = () => {
