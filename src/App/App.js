@@ -17,15 +17,14 @@ export default class App extends Component {
   }
 
   changeName = () => {
-    this.firstName()
-      .then((response) => {
-        return this.lastName(response);
-      })
-      .then((response) => {
+    Promise.all([this.firstName(), this.lastName()]).then(
+      ([firstName, lastName]) => {
+        const name = `${firstName} ${lastName}`;
         this.setState({
-          name: response
+          name: name
         });
-      });
+      }
+    );
   };
 
   firstName = () => {
@@ -36,10 +35,10 @@ export default class App extends Component {
     });
   };
 
-  lastName = (firstName) => {
+  lastName = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(`${firstName} Ramadan`);
+        resolve("Ramadan");
       }, 2000);
     });
   };
