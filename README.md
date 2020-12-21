@@ -1,2 +1,3 @@
 # promise_javascript
-Created with CodeSandbox
+
+# src->App->App.js
